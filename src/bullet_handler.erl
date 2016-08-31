@@ -210,7 +210,8 @@ reply_get_mode(eventsource, Data, Req) ->
     case cowboy_req:chunk([Event, <<"\n">>], Req) of
         ok -> {loop, Req};
         close -> {ok, Req};
-        {error, closed} -> {ok, Req}
+        {error, closed} -> {ok, Req};
+        {error, timeout} -> {ok, Req}
     end.
 
 %% Internal.
